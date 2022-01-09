@@ -35,4 +35,5 @@ yarn-error.log*
 .vercel
 
 # lock file
+*.lock
 yarn.lock
