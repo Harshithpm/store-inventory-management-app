@@ -21,7 +21,6 @@ export default function Products({ data }) {
 			<table className='table table-striped'>
 				<thead>
 					<tr>
-						<th scope='col'>Product ID</th>
 						<th scope='col'>Name</th>
 						<th scope='col'>Quantity</th>
 						<th scope='col'>Price</th>
@@ -32,8 +31,7 @@ export default function Products({ data }) {
 					{data.map((element, i) => {
 						return (
 							<tr key={i}>
-								<th scope='row'>{element.productId}</th>
-								<td>{element.name}</td>
+								<th scope='row'>{element.name}</th>
 								<td>{element.quantity}</td>
 								<td>$ {element.price}</td>
 								<td>{element.categoryName}</td>
