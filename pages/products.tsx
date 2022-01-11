@@ -18,6 +18,7 @@ export default function Products({ data }) {
 		<div className='container'>
 			<Nav />
 			<hr />
+			<h1>Products</h1>
 			<table className='table table-striped'>
 				<thead>
 					<tr>

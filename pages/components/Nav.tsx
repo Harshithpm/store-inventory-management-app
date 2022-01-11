@@ -23,7 +23,7 @@ export default function Nav() {
 							</Link>
 						</li>
 						<li className='nav-item'>
-							<Link href='/add-product'>
+							<Link href='/add-category'>
 								<a className='nav-link'>
 									<i className='fas fa-plus'></i> Category
 								</a>
