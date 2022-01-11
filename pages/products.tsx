@@ -1,20 +1,24 @@
 import Nav from './components/Nav';
-import { useEffect, useRef } from 'react';
+import { GetServerSideProps } from 'next';
+import { Product } from '@prisma/client';
 
-export default function Products() {
-	let products = useRef([]);
-	useEffect(() => {
-		fetch('http://localhost:3000/api/products')
-			.then((products) => products.json())
-			.then((data) => (products.current = data))
-			.catch((e) => console.error(e));
-	}, []);
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const res = await fetch('http://localhost:3000/api/products');
+	const data: Product[] = await res.json();
 
+	return {
+		props: {
+			data,
+		},
+	};
+};
+
+export default function Products({ data }) {
 	return (
-		<div>
+		<div className='container'>
 			<Nav />
 			<hr />
-			<table className='table'>
+			<table className='table table-striped'>
 				<thead>
 					<tr>
 						<th scope='col'>Product ID</th>
@@ -25,14 +29,14 @@ export default function Products() {
 					</tr>
 				</thead>
 				<tbody>
-					{products.current.map((v, i) => {
+					{data.map((element, i) => {
 						return (
 							<tr key={i}>
-								<th scope='row'>{v.productId}</th>
-								<td>{v.name}</td>
-								<td>{v.quantity}</td>
-								<td>{v.price}</td>
-								<td>{v.categoryName}</td>
+								<th scope='row'>{element.productId}</th>
+								<td>{element.name}</td>
+								<td>{element.quantity}</td>
+								<td>$ {element.price}</td>
+								<td>{element.categoryName}</td>
 							</tr>
 						);
 					})}
